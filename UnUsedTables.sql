@@ -1,3 +1,6 @@
+--=================================================--
+--=================================================--
+
 -- Create CTE for the unused tables, which are the tables from the sys.all_objects and 
 -- not in the sys.dm_db_index_usage_stats table
 
