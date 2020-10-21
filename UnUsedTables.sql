@@ -1,4 +1,7 @@
 --=================================================--
+--author: richard.t.escobar
+--desc:
+--created: 10/21/2020
 --=================================================--
 
 -- Create CTE for the unused tables, which are the tables from the sys.all_objects and 
