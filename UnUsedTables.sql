@@ -1,11 +1,27 @@
 --=================================================--
 --author: richard.t.escobar
---desc:
+--desc:    list unused tables... kind of...
 --created: 10/21/2020
 --=================================================--
 
 -- Create CTE for the unused tables, which are the tables from the sys.all_objects and 
 -- not in the sys.dm_db_index_usage_stats table
+/*
+	if exists(select is_local, role_desc from sys.dm_hadr_availability_replica_states where role = 1 and role_desc = 'PRIMARY') begin
+	print 'This server [' + upper(@@servername) + '] is the primary.' end
+	else
+	print 'This server [' + upper(@@servername) + '] is NOT the primary.'
+
+	VLN105711
+	VD108039
+	VD119348
+	
+
+	
+*/
+
+USE [2766_SalesDW]
+go
 
 ; with UnUsedTables (TableName , TotalRowCount, CreatedDate , LastModifiedDate ) 
 AS ( 
