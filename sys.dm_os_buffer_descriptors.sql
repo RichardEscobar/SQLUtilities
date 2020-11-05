@@ -17,6 +17,7 @@ COUNT_BIG(*) [16k Pages in Buffer],
 COUNT_BIG(*)/128 [Buffer Size in MB]
 --select top 10 * 
 FROM sys.dm_os_buffer_descriptors
+where [database_id] in (5,6,8)
 GROUP BY [database_id]
 ORDER BY [16k Pages in Buffer] DESC;
 
