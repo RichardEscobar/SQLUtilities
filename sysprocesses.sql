@@ -37,6 +37,4 @@ AND DATEDIFF(HOUR,last_batch,GETDATE())>=24 -- thread sleeping for 24 hours
 AND spid<>@@spid -- ignore current spid
 order by [loginame]
 
-/*
-
-
+*/

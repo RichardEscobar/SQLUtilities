@@ -1,3 +1,21 @@
+sp_who2
+
+
+SELECT TOP (20) 
+  p.name AS [SP Name], 
+  qs.total_worker_time AS [TotalWorkerTime], 
+  qs.total_worker_time/qs.execution_count AS [AvgWorkerTime], 
+  qs.execution_count, 
+  ISNULL(qs.execution_count/DATEDIFF(Second, qs.cached_time, GETDATE()), 0) AS [Calls/Second],
+  qs.total_elapsed_time, 
+  qs.total_elapsed_time/qs.execution_count AS [avg_elapsed_time], 
+  qs.cached_time
+FROM	sys.procedures AS p WITH (NOLOCK)
+INNER JOIN sys.dm_exec_procedure_stats AS qs WITH (NOLOCK) ON p.[object_id] = qs.[object_id]
+WHERE qs.database_id = DB_ID()
+ORDER BY qs.total_worker_time DESC OPTION (RECOMPILE);
+
+--=============================================================================================================--
 /*****	Script: SQL Server CPU Utilization report from last N minutes *****/
 /*****	Support: SQL Server 2008 and Above *****/
 /*****	Tested On: SQL Server 2008 R2 and 2014 *****/
@@ -27,31 +45,6 @@ WHERE ring_buffer_type =N'RING_BUFFER_SCHEDULER_MONITOR'AND record LIKE'%%')AS x
 ORDER BY record_id DESC; 
 
 --=========================================================================================================================--
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
 /*****	Script: Database Wise CPU Utilization report *****/
 /*****	Support: SQL Server 2008 and Above *****/
 /*****	TestedOn: SQL Server 2008 R2 and 2014 *****/
@@ -76,3 +69,86 @@ FROM	DB_CPU
 WHERE	DatabaseID > 4 -- system databases 
 	AND DatabaseID <> 32767 -- ResourceDB 
 ORDER BY SNO OPTION(RECOMPILE); 
+--======================================================================================================================--
+
+/*****	Script: Top 10 queries that causes high CPU Utilization *****/
+/*****	Support: SQL Server 2008 and Above *****/
+/*****	TestedOn: SQL Server 2008,R2 and 2014 *****/
+/*****	Output: All query related details *****/
+/*****	Note: This script returns list of costly queries when CPU utilization is >=80% from last 10 min ****/
+ 
+SET NOCOUNT ON
+DECLARE @ts_now bigint 
+DECLARE @AvgCPUUtilization DECIMAL(10,2) 
+ 
+SELECT @ts_now = cpu_ticks/(cpu_ticks/ms_ticks) FROM sys.dm_os_sys_info
+ 
+-- load the CPU utilization in the past 10 minutes into the temp table, you can load them into a permanent table
+SELECT TOP(10) SQLProcessUtilization AS [SQLServerProcessCPUUtilization]
+,SystemIdle AS [SystemIdleProcess]
+,100 - SystemIdle - SQLProcessUtilization AS [OtherProcessCPU Utilization]
+,DATEADD(ms, -1 * (@ts_now - [timestamp]), GETDATE()) AS [EventTime] 
+INTO #CPUUtilization
+FROM ( 
+      SELECT record.value('(./Record/@id)[1]', 'int') AS record_id, 
+            record.value('(./Record/SchedulerMonitorEvent/SystemHealth/SystemIdle)[1]', 'int') 
+            AS [SystemIdle], 
+            record.value('(./Record/SchedulerMonitorEvent/SystemHealth/ProcessUtilization)[1]', 
+            'int') 
+            AS [SQLProcessUtilization], [timestamp] 
+      FROM ( 
+            SELECT [timestamp], CONVERT(xml, record) AS [record] 
+            FROM sys.dm_os_ring_buffers 
+            WHERE ring_buffer_type = N'RING_BUFFER_SCHEDULER_MONITOR' 
+            AND record LIKE '%<SystemHealth>%') AS x 
+      ) AS y 
+ORDER BY record_id DESC
+ 
+ 
+-- check if the average CPU utilization was over 80% in the past 10 minutes
+SELECT @AvgCPUUtilization = AVG([SQLServerProcessCPUUtilization] + [OtherProcessCPU Utilization])
+FROM #CPUUtilization
+WHERE EventTime > DATEADD(MM, -10, GETDATE())
+ 
+IF @AvgCPUUtilization >= 80
+BEGIN
+	SELECT TOP(10)
+		CONVERT(VARCHAR(25),@AvgCPUUtilization) +'%' AS [AvgCPUUtilization]
+		, GETDATE() [Date and Time]
+		, r.cpu_time
+		, r.total_elapsed_time
+		, s.session_id
+		, s.login_name
+		, s.host_name
+		, DB_NAME(r.database_id) AS DatabaseName
+		, SUBSTRING (t.text,(r.statement_start_offset/2) + 1,
+		((CASE WHEN r.statement_end_offset = -1
+			THEN LEN(CONVERT(NVARCHAR(MAX), t.text)) * 2
+			ELSE r.statement_end_offset
+		END - r.statement_start_offset)/2) + 1) AS [IndividualQuery]
+		, SUBSTRING(text, 1, 200) AS [ParentQuery]
+		, r.status
+		, r.start_time
+		, r.wait_type
+		, s.program_name
+	INTO #PossibleCPUUtilizationQueries		
+	FROM sys.dm_exec_sessions s
+	INNER JOIN sys.dm_exec_connections c ON s.session_id = c.session_id
+	INNER JOIN sys.dm_exec_requests r ON c.connection_id = r.connection_id
+	CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) t
+	WHERE s.session_id > 50
+		AND r.session_id != @@spid
+	order by r.cpu_time desc
+	
+	-- query the temp table, you can also send an email report to yourself or your development team
+	SELECT *
+	FROM #PossibleCPUUtilizationQueries		
+END
+ 
+-- drop the temp tables
+IF OBJECT_ID('TEMPDB..#CPUUtilization') IS NOT NULL
+drop table #CPUUtilization
+ 
+IF OBJECT_ID('TEMPDB..#PossibleCPUUtilizationQueries') IS NOT NULL
+drop table #PossibleCPUUtilizationQueries
+--======================================================================================================--
