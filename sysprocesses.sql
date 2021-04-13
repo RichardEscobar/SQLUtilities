@@ -1,3 +1,5 @@
+sp_who2
+
 DECLARE @user_spid INT
 
 DECLARE CurSPID CURSOR FAST_FORWARD

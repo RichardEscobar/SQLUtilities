@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="TheUtilities">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="VD129325.dir.svc.accenture.com:DIR\richard.t.escobar">
+          <Created>2020-09-01T12:36:16.7513197-04:00</Created>
+          <Type>SQL</Type>
+          <Server>VD129325.dir.svc.accenture.com</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="VLN105711.dir.svc.accenture.com:DIR\richard.t.escobar">
+          <Created>2020-09-01T10:15:06.7738739-04:00</Created>
+          <Type>SQL</Type>
+          <Server>VLN105711.dir.svc.accenture.com</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>15</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="DependentObjects.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>DependentObjects.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DupsWithHaving.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>DupsWithHaving.sql</FullPath>
+        </FileNode>
+        <FileNode Name="PrimaryServer.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>PrimaryServer.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UnUsedTables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>UnUsedTables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="[Select4].[DW].[FactTargetMargin].sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>[Select4].[DW].[FactTargetMargin].sql</FullPath>
+        </FileNode>
+        <FileNode Name="[sys].[objectsII].sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>[sys].[objectsII].sql</FullPath>
+        </FileNode>
+        <FileNode Name="[sys].[objects].sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VD129325.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VD129325.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>[sys].[objects].sql</FullPath>
+        </FileNode>
+        <FileNode Name="finddups.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>finddups.sql</FullPath>
+        </FileNode>
+        <FileNode Name="getthecodetoo.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>getthecodetoo.sql</FullPath>
+        </FileNode>
+        <FileNode Name="object_cursor.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VD129325.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VD129325.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>object_cursor.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sys.columns.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sys.columns.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sys.dm_db_index_usage_stats.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sys.dm_db_index_usage_stats.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sys.dm_os_buffer_descriptors.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>sys.dm_os_buffer_descriptors.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sys.dm_tran_locks.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sys.dm_tran_locks.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sys.indexes.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sys.indexes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sys.procedures.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sys.procedures.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sys.views.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sys.views.sql</FullPath>
+        </FileNode>
+        <FileNode Name="sysprocesses.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>sysprocesses.sql</FullPath>
+        </FileNode>
+        <FileNode Name="trycatch.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VD129325.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VD129325.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>trycatch.sql</FullPath>
+        </FileNode>
+        <FileNode Name="whoisthat.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:VLN105711.dir.svc.accenture.com:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>VLN105711.dir.svc.accenture.com</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>whoisthat.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
